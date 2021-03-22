@@ -36,7 +36,7 @@ The steps and compensations actions in the process example are implemented as se
 This is the BPMN process that represents the Order Saga, and it is the one being used in the project to be built using
  kogito.
 
-<img src="docs/images/order-saga-svg.svg" width="80%"/>
+<img src="docs/images/orders-saga-svg.svg" width="80%"/>
 
 ## Installing and Running
 
@@ -121,35 +121,35 @@ Response example:
 
 ```json
     {
-        "id": "902a2caa-4ed0-4675-96e8-1434e1ea5bde",
-        "paymentResponse": {
-            "type": "SUCCESS",
-            "resourceId": "af87e7b8-e455-4170-96e0-8bf23081158a"
-        },
-        "tripResponse": {
-            "type": "SUCCESS",
-            "resourceId": "03e6cf79-3301-434b-b5e1-d6899b5639aa"
-        },
-        "failService": null,
-        "hotelResponse": {
-            "type": "SUCCESS",
-            "resourceId": "54101773-9a20-4e53-963c-353891ed8517"
-        },
-        "orderId": "03e6cf79-3301-434b-b5e1-d6899b5639aa",
-        "flightResponse": {
-            "type": "SUCCESS",
-            "resourceId": "523d33be-815c-44f7-b52b-2337b770872d"
-        }
+    "id": "799742b9-2903-45a3-be96-e7798f9425eb",
+    "stockResponse": {
+        "type": "SUCCESS",
+        "resourceId": "c408e18d-6ec7-48bf-8396-ef2d45ab53d5"
+    },
+    "paymentResponse": {
+        "type": "SUCCESS",
+        "resourceId": "700672de-b897-4db6-b45e-411e2ade83a0"
+    },
+    "orderId": "12345678",
+    "failService": "",
+    "orderResponse": {
+        "type": "SUCCESS",
+        "resourceId": "12345678"
+    },
+    "shippingResponse": {
+        "type": "SUCCESS",
+        "resourceId": "3c3b8324-7e58-45ca-a939-244c19002e36"
     }
+}
 ```
 
 In the console executing the application you can check the log it with the executed steps.
 
 ```text
-2020-11-05 16:23:32,478 INFO  [org.kie.kog.HotelService] (executor-thread-198) Book Hotel for t 3e6cf79-3301-434b-b5e1-d6899b5639aa
-2020-11-05 16:23:32,481 INFO  [org.kie.kog.FlightService] (executor-thread-198) Book Flight for t 3e6cf79-3301-434b-b5e1-d6899b5639aa
-2020-11-05 16:23:32,481 INFO  [org.kie.kog.PaymentService] (executor-thread-198) Create Payment for t 3e6cf79-3301-434b-b5e1-d6899b5639aa
-Trip Success
+17:16:58:864 INFO  [org.kie.kogito.StockService] Created Stock for 12345678 with Id: 8ab1ac13-38d0-49e6-ab40-1edd2dc39922
+17:16:58:865 INFO  [org.kie.kogito.PaymentService] Created Payment for 12345678 with Id: 2bfc044a-ccb4-4072-a26e-5a533d835257
+17:16:58:865 INFO  [org.kie.kogito.ShippingService] Created Shipping for 12345678 with Id: 84a45015-c98b-4e08-b4cd-cf05a19b87e1
+17:16:58:865 INFO  [org.kie.kogito.OrderService] Success Order 12345678
 ```
 
 #### Simulating errors to activate the compensation flows
@@ -175,24 +175,24 @@ Response example:
 
 ```json
 {
-    "id": "623f87c1-03ab-42e5-a1f4-e89b26cda769",
+    "id": "ef9c8b05-381c-456d-bf43-fbf5331a5e29",
+    "stockResponse": {
+        "type": "SUCCESS",
+        "resourceId": "9098daa2-f40f-4231-995a-1c7d159df190"
+    },
     "paymentResponse": {
-        "type": "ERROR",
-        "resourceId": "76d77805-3b28-445d-b38d-5796930d9996"
-    },
-    "tripResponse": {
-        "type": "ERROR",
-        "resourceId": "03e6cf79-3301-434b-b5e1-d6899b5639aa"
-    },
-    "failService": "PaymentService",
-    "hotelResponse": {
         "type": "SUCCESS",
-        "resourceId": "7ff1b4df-f999-4306-bc1d-e45cc7206695"
+        "resourceId": "d6ac4086-efe9-4a9e-849c-2b6d48dbc1f0"
     },
-    "orderId": "03e6cf79-3301-434b-b5e1-d6899b5639aa",
-    "flightResponse": {
-        "type": "SUCCESS",
-        "resourceId": "e2441697-f548-48be-aa1c-120e71bcd488"
+    "orderId": "12345678",
+    "failService": "ShippingService",
+    "orderResponse": {
+        "type": "ERROR",
+        "resourceId": "12345678"
+    },
+    "shippingResponse": {
+        "type": "ERROR",
+        "resourceId": "39c40aa1-10af-42ad-8ba2-b8dd9c6279e1"
     }
 }
 ```
@@ -200,16 +200,14 @@ Response example:
 In the console executing the application you can check the log it with the executed steps.
 
 ```text
-2020-11-05 16:51:10,653 INFO  [org.kie.kog.HotelService] (executor-thread-199) Book Hotel for t 03e6cf79-3301-434b-b5e1-d6899b5639aa
-2020-11-05 16:51:10,654 INFO  [org.kie.kog.FlightService] (executor-thread-199) Book Flight for t 03e6cf79-3301-434b-b5e1-d6899b5639aa
-2020-11-05 16:51:10,654 INFO  [org.kie.kog.PaymentService] (executor-thread-199) Create Payment for t 03e6cf79-3301-434b-b5e1-d6899b5639aa
-Trip Failed
-2020-11-05 16:51:10,656 INFO  [org.kie.kog.PaymentService] (executor-thread-199) Cancel Payment for t 03e6cf79-3301-434b-b5e1-d6899b5639aa
-2020-11-05 16:51:10,656 INFO  [org.kie.kog.FlightService] (executor-thread-199) Cancel Flight for t 03e6cf79-3301-434b-b5e1-d6899b5639aa
-2020-11-05 16:51:10,657 INFO  [org.kie.kog.HotelService] (executor-thread-199) Cancel Hotel for t 03e6cf79-3301-434b-b5e1-d6899b5639aa
+17:16:17:723 INFO  [org.kie.kogito.StockService] Created Stock for 12345678 with Id: 9098daa2-f40f-4231-995a-1c7d159df190
+17:16:17:724 INFO  [org.kie.kogito.PaymentService] Created Payment for 12345678 with Id: d6ac4086-efe9-4a9e-849c-2b6d48dbc1f0
+17:16:17:724 INFO  [org.kie.kogito.ShippingService] Created Shipping for 12345678 with Id: 39c40aa1-10af-42ad-8ba2-b8dd9c6279e1
+17:16:17:746 WARN  [org.kie.kogito.ShippingService] Cancel Shipping for 39c40aa1-10af-42ad-8ba2-b8dd9c6279e1
+17:16:17:746 WARN  [org.kie.kogito.PaymentService] Cancel Payment for d6ac4086-efe9-4a9e-849c-2b6d48dbc1f0
+17:16:17:747 WARN  [org.kie.kogito.StockService] Cancel Stock for 9098daa2-f40f-4231-995a-1c7d159df190
+17:16:17:747 WARN  [org.kie.kogito.OrderService] Failed Order 12345678
 ```
-
-
 
 ## Deploying with Kogito Operator
 
