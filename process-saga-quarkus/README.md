@@ -36,7 +36,7 @@ The steps and compensations actions in the process example are implemented as se
 This is the BPMN process that represents the Order Saga, and it is the one being used in the project to be built using
  kogito.
 
-<img src="docs/images/trip-saga.bpmn2.png" width="80%"/>
+<img src="docs/images/order-saga-svg.svg" width="80%"/>
 
 ## Installing and Running
 
