@@ -1,0 +1,46 @@
+syntax = "proto2"; 
+package com.example.orders; 
+import "kogito-index.proto";
+import "kogito-types.proto";
+option kogito_model = "Orders";
+option kogito_id = "orders";
+
+/* @Indexed */ 
+message Orders { 
+	option java_package = "com.example.orders";
+	/* @Field(store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional string failService = 1; 
+	/* @Field(store = Store.YES) @SortableField */ 
+	optional string id = 2; 
+	/* @Field(store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional string orderId = 3; 
+	/* @Field(store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional Response orderResponse = 4; 
+	/* @Field(store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional Response paymentResponse = 5; 
+	/* @Field(store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional Response shippingResponse = 6; 
+	/* @Field(store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional Response stockResponse = 7; 
+	/* @Field(store = Store.YES) @SortableField */ 
+	optional org.kie.kogito.index.model.KogitoMetadata metadata = 8; 
+}
+/* @Indexed */ 
+message Response { 
+	option java_package = "com.example.orders";
+	/* @Field(store = Store.YES) @SortableField */ 
+	optional string resourceId = 1; 
+	/* @Field(store = Store.YES) @SortableField */ 
+	optional Type type = 2; 
+}
+enum Type { 
+	option java_package = "com.example.orders";
+	SUCCESS = 1;
+	ERROR = 0;
+}
