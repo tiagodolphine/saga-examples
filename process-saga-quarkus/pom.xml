@@ -44,35 +44,35 @@
     <!-- Integration with data index + messaging -->
 
     <!-- Messaging -->
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.smallrye.reactive</groupId>
-      <artifactId>smallrye-reactive-messaging-in-memory</artifactId>
-      <version>2.7.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-cloudevents-quarkus-addon</artifactId>
-    </dependency>
-    <!-- Messaging -->
+<!--    <dependency>-->
+<!--      <groupId>io.quarkus</groupId>-->
+<!--      <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>io.smallrye.reactive</groupId>-->
+<!--      <artifactId>smallrye-reactive-messaging-in-memory</artifactId>-->
+<!--      <version>2.7.1</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.kie.kogito</groupId>-->
+<!--      <artifactId>kogito-cloudevents-quarkus-addon</artifactId>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; Messaging &ndash;&gt;-->
 
-    <dependency>
-      <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-events-reactive-messaging-addon</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.kie.kogito</groupId>-->
+<!--      <artifactId>kogito-events-reactive-messaging-addon</artifactId>-->
+<!--    </dependency>-->
 
-    <!-- infinispan -->
-    <dependency>
-      <groupId>org.kie.kogito</groupId>
-      <artifactId>infinispan-persistence-addon</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-infinispan-client</artifactId>
-    </dependency>
+<!--    &lt;!&ndash; infinispan &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.kie.kogito</groupId>-->
+<!--      <artifactId>infinispan-persistence-addon</artifactId>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>io.quarkus</groupId>-->
+<!--      <artifactId>quarkus-infinispan-client</artifactId>-->
+<!--    </dependency>-->
 
     <!-- Integration with data index + messaging -->
 
